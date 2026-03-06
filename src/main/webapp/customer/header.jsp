@@ -1,8 +1,7 @@
 <!-- customer/header.jsp -->
 <%@ page import="jakarta.servlet.http.HttpSession" %>
     <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-        <% // Use the implicit 'session' object provided by JSP String username=(String)
-            session.getAttribute("username"); %>
+        <% String username=(String) session.getAttribute("username"); %>
 
             <!DOCTYPE html>
             <html lang="en">
