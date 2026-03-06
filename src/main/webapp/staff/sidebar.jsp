@@ -99,10 +99,13 @@
                 class="flex items-center px-3 py-2 rounded-lg hover:bg-blue-500 transition">
                 <i class="fas fa-comments mr-2"></i> Manage Reports
             </a>
-            <a href="<%= request.getContextPath() %>/userAuth?action=viewUsers"
-                class="flex items-center px-3 py-2 rounded-lg hover:bg-blue-500 transition">
-                <i class="fas fa-users mr-2"></i> View Users
-            </a>
+            <% model.User sidebarUser=(model.User) session.getAttribute("currentUser"); if (sidebarUser !=null &&
+                sidebarUser.getRole()==model.Role.ADMIN) { %>
+                <a href="<%= request.getContextPath() %>/userAuth?action=viewUsers"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-blue-500 transition">
+                    <i class="fas fa-users mr-2"></i> View Users
+                </a>
+                <% } %>
         </nav>
 
         <!-- Logout Button -->
