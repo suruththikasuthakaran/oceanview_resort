@@ -1,8 +1,8 @@
 <%@ page session="true" %>
     <%@ page import="java.util.List, model.User, model.Role, service.UserService" %>
-        <% User currentUser=(User) session.getAttribute("currentUser"); if (currentUser==null || (currentUser.getRole()
-            !=Role.ADMIN && currentUser.getRole() !=Role.STAFF)) { response.sendRedirect(request.getContextPath()
-            + "/login.jsp" ); return; } List<User> users = (List<User>) request.getAttribute("users");
+        <% User currentUser=(User) session.getAttribute("currentUser"); if (currentUser==null || currentUser.getRole()
+            !=Role.ADMIN) { response.sendRedirect(request.getContextPath() + "/login.jsp" ); return; } List<User> users
+            = (List<User>) request.getAttribute("users");
                 if (users == null) {
                 UserService userService = new UserService();
                 users = userService.getAllUsers();
