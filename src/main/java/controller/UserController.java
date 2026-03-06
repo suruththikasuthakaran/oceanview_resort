@@ -149,7 +149,8 @@ public class UserController extends HttpServlet {
         }
 
         User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null || (currentUser.getRole() != Role.ADMIN && currentUser.getRole() != Role.STAFF)) {
+        // Only ADMIN can view users
+        if (currentUser == null || currentUser.getRole() != Role.ADMIN) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
@@ -164,11 +165,8 @@ public class UserController extends HttpServlet {
         }
         
         request.setAttribute("users", users);
-        if (currentUser.getRole() == Role.ADMIN) {
-            request.getRequestDispatcher("/admin/viewUsers.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/staff/viewUsers.jsp").forward(request, response);
-        }
+        // Admin always uses the staff/viewUsers.jsp (shared UI via staff sidebar)
+        request.getRequestDispatcher("/staff/viewUsers.jsp").forward(request, response);
     }
 
     private void handleDeleteUser(HttpServletRequest request, HttpServletResponse response)
@@ -181,7 +179,8 @@ public class UserController extends HttpServlet {
         }
 
         User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null || (currentUser.getRole() != Role.ADMIN && currentUser.getRole() != Role.STAFF)) {
+        // Only ADMIN can delete users
+        if (currentUser == null || currentUser.getRole() != Role.ADMIN) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
