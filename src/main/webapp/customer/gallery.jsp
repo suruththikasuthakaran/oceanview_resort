@@ -12,17 +12,18 @@
 
                 <!-- Gallery Grid -->
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <% // Dynamically load images from the images directory String
-                        imagePath=application.getRealPath("/images"); File folder=new File(imagePath); File[]
+                    <% String imagePath=application.getRealPath("/images"); File folder=new File(imagePath); File[]
                         listOfFiles=folder.listFiles(); if (listOfFiles !=null) { for (File file : listOfFiles) { if
-                        (file.isFile()) { String fileName=file.getName(); // Exclude logos and background images if
-                        needed, but the user asked for "all images" // Filter by common image extensions String
-                        lowerName=fileName.toLowerCase(); if (lowerName.endsWith(".jpg") || lowerName.endsWith(".png")
-                        || lowerName.endsWith(".webp") || lowerName.endsWith(".jpeg") || lowerName.endsWith(".avif")) {
-                        String title=fileName.replace("-", " " ).replace("_", " " ); // Remove extension from title int
-                        lastDot=title.lastIndexOf('.'); if (lastDot> 0) title = title.substring(0, lastDot);
-                        // Capitalize first letters
-                        if (title.length() > 0) title = title.substring(0, 1).toUpperCase() + title.substring(1);
+                        (file.isFile()) { String fileName=file.getName(); String lowerName=fileName.toLowerCase(); if
+                        (lowerName.endsWith(".jpg") || lowerName.endsWith(".png") || lowerName.endsWith(".webp") ||
+                        lowerName.endsWith(".jpeg") || lowerName.endsWith(".avif")) { String
+                        title=fileName.replace("-", " " ).replace("_", " " ); int lastDot=title.lastIndexOf('.'); if
+                        (lastDot> 0) {
+                        title = title.substring(0, lastDot);
+                        }
+                        if (title.length() > 0) {
+                        title = title.substring(0, 1).toUpperCase() + title.substring(1);
+                        }
                         %>
                         <div class="relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3] shadow-md hover:shadow-xl transition-all duration-300"
                             onclick="openLightbox('<%= request.getContextPath() %>/images/<%= fileName %>','<%= title %>')">
