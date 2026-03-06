@@ -56,9 +56,9 @@
                 </div>
             </div>
 
-            <a href="<%= request.getContextPath() %>/admin/viewUsers.jsp"
+            <a href="<%= request.getContextPath() %>/userAuth?action=viewUsers"
                 class="flex items-center px-3 py-2 rounded-lg hover:bg-blue-500 transition">
-                <i class="fas fa-user mr-2"></i> Manage Users
+                <i class="fas fa-users mr-2"></i> View Users
             </a>
             <a href="<%= request.getContextPath() %>/staff/paymentHistory.jsp"
                 class="flex items-center px-3 py-2 rounded-lg hover:bg-blue-500 transition">
